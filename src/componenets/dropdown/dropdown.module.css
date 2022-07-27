@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  height: 100%;
+}
+
+.main select {
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: 1px solid #007aff;
+  background-color: #fff;
+}
+
+.main select:focus {
+  border: 1px solid #007aff;
+}
