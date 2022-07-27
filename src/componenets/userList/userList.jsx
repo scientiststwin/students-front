@@ -9,8 +9,8 @@ const UserList = (props) => {
       {props.users.map((user) => (
         <User
           key={user.id}
-          first_name={user.first_name}
-          last_name={user.last_name}
+          firstName={user.firstName}
+          lastName={user.lastName}
           age={user.age}
         />
       ))}
@@ -24,8 +24,8 @@ UserList.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      first_name: PropTypes.string,
-      last_name: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
       age: PropTypes.number,
     })
   ),

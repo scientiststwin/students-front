@@ -5,8 +5,8 @@ import Classes from "./user.module.css";
 const User = (props) => {
   return (
     <div className={Classes.main}>
-      <div>{props.first_name}</div>
-      <div>{props.last_name}</div>
+      <div>{props.firstName}</div>
+      <div>{props.lastName}</div>
       <div>({props.age})</div>
     </div>
   );
@@ -15,7 +15,7 @@ const User = (props) => {
 export default User;
 
 User.propTypes = {
-  first_name: PropTypes.string,
-  last_name: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
   age: PropTypes.number,
 };
