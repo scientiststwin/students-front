@@ -6,8 +6,8 @@ import { createStudent } from "../../api/student.js";
 
 const New = () => {
   const initialStudentState = {
-    id: undefined,
-    age: undefined,
+    id: 0,
+    age: 0,
     firstName: "",
     lastName: "",
     nationality: "",
