@@ -17,7 +17,7 @@ export const getstudents = async (nationality, sort) => {
 
 export const createStudent = async (student) => {
   try{
-    const response = await axios.post('/init', student)
+    const response = await axios.post('/users', student)
     return response
   }
   catch(error){
