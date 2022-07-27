@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  font-family: serif;
+}
+
+.main > h1 {
+  padding: 30px 0;
+  margin: auto;
+}
+
+.form {
+  margin-top: 10vh;
+  width: 30%;
+}
+
+.form > * + * {
+  margin-top: 10px;
+}
