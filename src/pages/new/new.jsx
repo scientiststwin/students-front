@@ -2,36 +2,67 @@ import React, { useState } from "react";
 import InputForm from "../../componenets/inputFrom/inputForm";
 import SubmitButton from "../../componenets/submitButton/submitButton";
 import Classes from "./new.module.css";
+import { createStudent } from "../../api/student.js";
 
 const New = () => {
-  const [student, setStudent] = useState();
+  const initialStudentState = {
+    id: undefined,
+    age: undefined,
+    firstName: "",
+    lastName: "",
+    nationality: "",
+  };
 
-  const inputHandler = (key) => (event) =>
+  const [student, setStudent] = useState(initialStudentState);
+
+  const textInputHandler = (key) => (event) =>
     setStudent((pre) => ({ ...pre, [key]: event.target.value }));
+
+  const numberInputHandler = (key) => (event) =>
+    setStudent((pre) => ({ ...pre, [key]: event.target.valueAsNumber }));
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(student);
+
+    createStudent(student)
+      .then((response) => {
+        alert("Student was added successfully ");
+        setStudent(initialStudentState);
+      })
+      .catch((error) => alert(error));
   };
 
   return (
     <div className={Classes.main}>
       <h1>Add a new Student</h1>
       <form className={Classes.form} onSubmit={onSubmitHandler}>
-        <InputForm onChange={inputHandler("id")} label="id" type="number" />
-        <InputForm onChange={inputHandler("age")} label="age" type="number" />
         <InputForm
-          onChange={inputHandler("first name")}
+          value={student.id}
+          onChange={numberInputHandler("id")}
+          label="id"
+          type="number"
+        />
+        <InputForm
+          value={student.age}
+          onChange={numberInputHandler("age")}
+          label="age"
+          type="number"
+        />
+        <InputForm
+          value={student.firstName}
+          onChange={textInputHandler("firstName")}
           label="first name"
           type="text"
         />
         <InputForm
-          onChange={inputHandler("last name")}
+          value={student.lastName}
+          onChange={textInputHandler("lastName")}
           label="last name"
           type="text"
         />
         <InputForm
-          onChange={inputHandler("nationality")}
+          value={student.nationality}
+          onChange={textInputHandler("nationality")}
           label="nationality"
           type="text"
         />
