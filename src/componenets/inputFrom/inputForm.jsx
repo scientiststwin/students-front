@@ -8,7 +8,12 @@ const InputForm = (props) => {
   return (
     <div className={Classes.main}>
       <label htmlFor={id}>{props.label}</label>
-      <input id={id} type={props.type} onChange={props.onChange} />
+      <input
+        id={id}
+        type={props.type}
+        value={props.value}
+        onChange={props.onChange}
+      />
     </div>
   );
 };
@@ -19,4 +24,5 @@ InputForm.propTypes = {
   label: PropTypes.string,
   type: PropTypes.oneOf(["number", "text"]),
   onChange: PropTypes.func,
+  value: PropTypes.oneOf(["number", "text"]),
 };
