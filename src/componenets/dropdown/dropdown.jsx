@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import classes from "./dropdown.module.css";
 import PropTypes from "prop-types";
+import useDeepCompareEffect from "use-deep-compare-effect";
 
 const Dropdown = (props) => {
   const onSelectHandler = (item) => {
@@ -8,11 +9,9 @@ const Dropdown = (props) => {
     props.onChange(value);
   };
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const firstOption = props?.options?.[0]?.name;
     if (firstOption) props.onChange(firstOption);
-
-    // FIXME: use deep compare
   }, [props.options]);
 
   return (
