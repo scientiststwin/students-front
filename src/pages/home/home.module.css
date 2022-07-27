@@ -14,3 +14,7 @@
 .users {
   width: 25%;
 }
+
+.users > * {
+  margin-top: 10px;
+}

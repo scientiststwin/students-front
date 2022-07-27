@@ -3,18 +3,30 @@ import Classes from "./home.module.css";
 import Dropdown from "../../componenets/dropdown/dropdown";
 import UserList from "../../componenets/userList/userList";
 import { getNationalities, getstudents } from "../../api/student";
+import Button from "../../componenets/button/button";
 
 const Home = () => {
   const [nationalities, setNationalities] = useState([]);
   const [selectedNationality, setSelectedNationality] = useState(null);
+  const [sort, setSort] = useState(undefined);
   const [users, setUsers] = useState([]);
 
   const retieriveNationalities = () => {
     getNationalities().then((response) => setNationalities(response.data));
   };
 
-  const selectNationality = (name) => {
-    setSelectedNationality(name);
+  const retieriveUsers = () =>
+    getstudents(selectedNationality, sort).then((response) =>
+      setUsers(response.data)
+    );
+
+  const onNationalityHandler = (name) => setSelectedNationality(name);
+
+  const onSortHandler = () => {
+    setSort((preSort) => {
+      if (preSort) return -1 * preSort;
+      return 1;
+    });
   };
 
   useEffect(() => {
@@ -22,24 +34,16 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (selectNationality)
-      getstudents(selectedNationality).then((response) =>
-        setUsers(response.data)
-      );
-  }, [selectedNationality]);
-
-  // const users = [
-  //   { id: 1, first_name: "ilia", last_name: "gurgenidze", age: 22 },
-  //   { id: 2, first_name: "ivan", last_name: "gurgenidze", age: 25 },
-  //   { id: 3, first_name: "dom", last_name: "twislku", age: 30 },
-  // ];
+    if (onNationalityHandler) retieriveUsers();
+  }, [selectedNationality, sort]);
 
   return (
     <div className={Classes.main}>
       <h1>See students</h1>
 
       <div className={Classes.users}>
-        <Dropdown onChange={selectNationality} options={nationalities} />
+        <Button text="Sort" onClick={onSortHandler} />
+        <Dropdown onChange={onNationalityHandler} options={nationalities} />
         <UserList users={users} />
       </div>
     </div>
