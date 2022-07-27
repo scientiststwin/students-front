@@ -24,5 +24,5 @@ InputForm.propTypes = {
   label: PropTypes.string,
   type: PropTypes.oneOf(["number", "text"]),
   onChange: PropTypes.func,
-  value: PropTypes.oneOf(["number", "text"]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
